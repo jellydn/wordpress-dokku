@@ -18,8 +18,8 @@
 # Configuration
 # wp-config.php - committed for Dokku deployment (uses env vars for secrets)
 
-# Example themes
-/wp-content/themes/twenty*/
+# Example themes - committed for Dokku deployment
+# /wp-content/themes/twenty*/
 
 # Example plugin
 /wp-content/plugins/hello.php
