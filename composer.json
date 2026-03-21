@@ -1,0 +1,11 @@
+{
+  "name": "wordpress/wordpress",
+  "description": "WordPress",
+  "type": "project",
+  "require": {
+    "php": ">=8.0"
+  },
+  "config": {
+    "vendor-dir": "vendor"
+  }
+}
