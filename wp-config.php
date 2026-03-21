@@ -58,6 +58,15 @@ define('WP_DEBUG', getenv('WP_DEBUG') ?: false);
 
 /* Add any custom values between this line and the "stop editing" line. */
 
+// Force HTTPS for Dokku deployments behind reverse proxy
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+	$_SERVER['HTTPS'] = 'on';
+}
+
+// Define site URLs if needed (optional, WordPress will auto-detect)
+// define('WP_HOME', 'https://wp.itman.fyi');
+// define('WP_SITEURL', 'https://wp.itman.fyi');
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
