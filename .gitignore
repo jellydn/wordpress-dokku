@@ -32,8 +32,8 @@
 # Log files
 *.log
 
-# htaccess
-/.htaccess
+# htaccess - committed for WordPress rewrite rules
+# /.htaccess
 
 # All plugins
 #

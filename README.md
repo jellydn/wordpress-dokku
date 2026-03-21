@@ -74,20 +74,20 @@ Must be committed alongside `composer.json`. Run `composer update` locally to ge
 
 ```json
 {
-    "_readme": ["..."],
-    "content-hash": "...",
-    "packages": [],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": {
-        "php": ">=8.0"
-    },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+  "_readme": ["..."],
+  "content-hash": "...",
+  "packages": [],
+  "packages-dev": [],
+  "aliases": [],
+  "minimum-stability": "stable",
+  "stability-flags": [],
+  "prefer-stable": false,
+  "prefer-lowest": false,
+  "platform": {
+    "php": ">=8.0"
+  },
+  "platform-dev": [],
+  "plugin-api-version": "2.6.0"
 }
 ```
 
@@ -102,7 +102,7 @@ $database_url = getenv('DATABASE_URL');
 
 if ($database_url) {
     $url = parse_url($database_url);
-    
+
     define('DB_NAME', ltrim($url['path'], '/'));
     define('DB_USER', $url['user']);
     define('DB_PASSWORD', $url['pass']);
@@ -152,11 +152,13 @@ Ensure `composer.lock` is committed to git (not in `.gitignore`).
 ### Database Connection Errors
 
 Verify `DATABASE_URL` is set:
+
 ```bash
 dokku config:get wp DATABASE_URL
 ```
 
 If empty, re-link the database:
+
 ```bash
 dokku mysql:link wp wp-db
 ```
