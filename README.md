@@ -163,6 +163,45 @@ If empty, re-link the database:
 dokku mysql:link wp wp-db
 ```
 
+## Managing Themes and Plugins
+
+### Option 1: Commit to Git (Recommended)
+
+Add themes/plugins to your repository and redeploy:
+
+```bash
+# Download theme locally
+curl -L -o theme.zip https://downloads.wordpress.org/theme/theme-name.latest-stable.zip
+unzip theme.zip -d wp-content/themes/
+
+# Commit and deploy
+git add wp-content/themes/theme-name/
+git commit -m "Add theme-name theme"
+git push dokku main
+```
+
+### Option 2: Persistent Storage
+
+Enable persistent storage to install themes/plugins via WordPress admin:
+
+```bash
+# Create storage directories
+dokku storage:ensure-directory wp-themes
+dokku storage:ensure-directory wp-uploads
+
+# Mount to container (DO NOT mount entire wp-content, only specific subdirectories)
+dokku storage:mount wp /var/lib/dokku/data/storage/wp-themes:/app/wp-content/themes
+dokku storage:mount wp /var/lib/dokku/data/storage/wp-uploads:/app/wp-content/uploads
+
+# Copy existing themes to storage first
+dokku run wp cp -r /app/wp-content/themes/* /var/lib/dokku/data/storage/wp-themes/ 2>/dev/null || true
+
+# Restart app
+dokku ps:restart wp
+```
+
+**Note:** After enabling persistent storage for themes, you'll be able to install themes via WordPress admin at `wp-admin/theme-install.php`.
+
 ## Notes
 
 - WordPress core files are committed to this repo (unusual but necessary for Dokku deployment)
